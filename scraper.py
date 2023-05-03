@@ -17,6 +17,13 @@ def extract_next_links(url, resp):
     # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
     return list()
 
+#returns true if the given url has a robot text file 
+def RobotTXT_exist(url):
+    return True
+
+def readRobot(url):
+    return
+
 def is_valid(url):
     # Decide whether to crawl this url or not. 
     # If you decide to crawl it, return True; otherwise return False.
