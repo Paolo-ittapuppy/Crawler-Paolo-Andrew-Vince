@@ -25,6 +25,13 @@ def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
+def readToFile():
+    with open('output.txt', 'w') as f:
+        for key, value in jsonDict.items():
+            # write item to file
+            f.write(str(key) + ': ' + str(value) + '\n')
+    return
+
 def extract_next_links(url, resp):
     # Implementation required.
     # url: the URL that was used to get the page
@@ -41,30 +48,6 @@ def extract_next_links(url, resp):
         return list()
     
     #too big
-<<<<<<< HEAD
-    if len(resp.raw_response.content) > 1_200_000:
-        return list()
-    
-    #duplicate check, dupe url set
-
-    #maybe more checks?
-
-    webPage = BeautifulSoup(resp.raw_response.content, "html.parser")
-    text = tokenizer.tokenize(webPage.text)
-    freq = tokenizer.computeWordFrequencies(text)
-
-    #too much repitition
-    if len(freq.keys)/len(text) < .2:
-        return list()
-
-    #return a list of all urls 
-    newUrls = []
-    for url in webPage.findAll('a'):
-        newUrls.append(url.get('href'))
-    #maybe add deleting duplicates here?
-    return newUrls
-
-=======
     if len(resp.raw_response.content) > 850_000:
         return list()
     
@@ -80,7 +63,6 @@ def extract_next_links(url, resp):
     if len(freq.keys)/len(words) < .2:
         return list()
 
->>>>>>> zedhoebranch
 
 
 #returns true if the given url has a robot text file 
