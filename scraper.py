@@ -8,6 +8,7 @@ uniquePages = []
 longestPage = tuple() #two tuple, first is page and second is length
 wordCounts = dict()
 icsSubDomains = []
+dupCheck = set()
 
 jsonDict = {}
 jsonDict["UPages"] = uniquePages
@@ -45,25 +46,34 @@ def extract_next_links(url, resp):
 
     #error in page
     if resp.status != 200:
+        # do we need to check if there's an error then by using resp.raw_response.url ?
         return list()
     
     #too big
-    if len(resp.raw_response.content) > 850_000:
+    if len(resp.raw_response.content) > 1_200_000:
         return list()
     
     #duplicate check
-
+    if url in dupCheck:
+        # would we use resp.url or regular url... not sure what the difference is
+        return list()
+    dupCheck.add(url)
     #maybe more checks?
 
-    text = BeautifulSoup(resp.raw_response.content, "html.parser")
-    words = tokenizer.tokenize(text)
-    freq = tokenizer.computeWordFrequencies(words)
+    webPage = BeautifulSoup(resp.raw_response.content, "html.parser")
+    text = tokenizer.tokenize(webPage.text)
+    freq = tokenizer.computeWordFrequencies(text)
 
     #too much repitition
     if len(freq.keys)/len(words) < .2:
         return list()
-
-
+    
+    #return a list of all urls 
+    newUrls = []
+    for url in webPage.findAll('a'):
+        newUrls.append(url.get('href'))
+    #maybe add deleting duplicates here?
+    return newUrls
 
 #returns true if the given url has a robot text file 
 def RobotTXT_exist(url):
