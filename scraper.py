@@ -9,6 +9,8 @@ longestPage = tuple() #two tuple, first is page and second is length
 wordCounts = dict()
 icsSubDomains = []
 
+dupCheck = set()
+
 jsonDict = {}
 jsonDict["UPages"] = uniquePages
 jsonDict["LPage"] = longestPage
