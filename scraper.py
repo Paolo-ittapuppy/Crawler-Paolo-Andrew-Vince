@@ -1,5 +1,25 @@
 import re
 from urllib.parse import urlparse
+from bs4 import BeautifulSoup
+import tokenizer
+import json
+
+uniquePages = []
+longestPage = tuple() #two tuple, first is page and second is length
+wordCounts = dict()
+icsSubDomains = []
+
+jsonDict = {}
+jsonDict["UPages"] = uniquePages
+jsonDict["LPage"] = longestPage
+jsonDict["wCount"] = wordCounts
+jsonDict["sDomains"] = icsSubDomains
+
+def storeData():
+    uniquePages = list(set(uniquePages))
+    data = open('data.json', 'w')
+    json.dump(jsonDict, data)
+    data.close
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
@@ -15,7 +35,35 @@ def extract_next_links(url, resp):
     #         resp.raw_response.url: the url, again
     #         resp.raw_response.content: the content of the page!
     # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
-    return list()
+
+    #error in page
+    if resp.status != 200:
+        return list()
+    
+    #too big
+    if len(resp.raw_response.content) > 850_000:
+        return list()
+    
+    #duplicate check
+
+    #maybe more checks?
+
+    text = BeautifulSoup(resp.raw_response.content, "html.parser")
+    words = tokenizer.tokenize(text)
+    freq = tokenizer.computeWordFrequencies(words)
+
+    #too much repitition
+    if len(freq.keys)/len(words) < .2:
+        return list()
+
+
+
+#returns true if the given url has a robot text file 
+def RobotTXT_exist(url):
+    return True
+
+def readRobot(url):
+    return
 
 def is_valid(url):
     # Decide whether to crawl this url or not. 
@@ -25,6 +73,10 @@ def is_valid(url):
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
+        
+        if not re.match(r".*(.ics.uci.edu/|.ics.uci.edu/|.informatics.uci.edu/|.stat.uci.edu/|)", parsed.netloc):
+            return False
+
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
