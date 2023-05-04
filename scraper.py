@@ -58,8 +58,8 @@ def extract_next_links(url, resp):
     dupCheck.add(url)
     #maybe more checks?
 
-    text = BeautifulSoup(resp.raw_response.content, "html.parser")
-    words = tokenizer.tokenize(text)
+    results = BeautifulSoup(resp.raw_response.content, "html.parser")
+    words = tokenizer.tokenize(results.text)
     freq = tokenizer.computeWordFrequencies(words)
 
     #too much repitition
