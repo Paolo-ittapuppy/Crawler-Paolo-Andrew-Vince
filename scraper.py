@@ -8,6 +8,7 @@ uniquePages = []
 longestPage = tuple() #two tuple, first is page and second is length
 wordCounts = dict()
 icsSubDomains = []
+dupCheck = set()
 
 jsonDict = {}
 jsonDict["UPages"] = uniquePages
@@ -52,7 +53,9 @@ def extract_next_links(url, resp):
         return list()
     
     #duplicate check
-
+    if url in dupCheck:
+        return list()
+    dupCheck.add(url)
     #maybe more checks?
 
     text = BeautifulSoup(resp.raw_response.content, "html.parser")
@@ -62,8 +65,6 @@ def extract_next_links(url, resp):
     #too much repitition
     if len(freq.keys)/len(words) < .2:
         return list()
-
-
 
 #returns true if the given url has a robot text file 
 def RobotTXT_exist(url):
