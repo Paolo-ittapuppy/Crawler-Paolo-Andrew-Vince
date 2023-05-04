@@ -1,27 +1,19 @@
 import os
 import re
 import sys
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+#code gotten from "https://www.geeksforgeeks.org/removing-stop-words-nltk-python/"
 
-#this should run linear time compared to N where N is the number of words in the file. 
-#the double for loop is just going through every word once. O(N)
-def tokenize(TextFilePath):
+
+def tokenize(Text):
     #check if file exists
     tokenList = []
-    if os.path.exists(TextFilePath):
-        with open(TextFilePath, encoding="utf-8") as f:
-            while True:
-                try:
-                    for l in f:
-                        words = re.findall(r"\w+\'?\w*", l.lower())
-                        for word in words:
-                            tokenList.append(word)
-                    break
-                except:
-                    pass
+    for t in word_tokenize(Text):
+        if t.lower() not in stopwords:
+            tokenList.append(t)
     return tokenList
     
-#should take O(NlogN) time, it should only need to loop through all the words once to count them all. 
-# sorted takes NlogN time so the time complexity boils down to NLogN + N time
 def computeWordFrequencies(tokenList):
     tokenMap = {}
     if type(tokenList) == list:
