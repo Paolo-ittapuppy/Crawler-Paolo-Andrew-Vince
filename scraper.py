@@ -27,10 +27,8 @@ def scraper(url, resp):
     return [link for link in links if is_valid(link)]
 
 def readToFile():
-    with open('output.txt', 'w') as f:
-        for key, value in jsonDict.items():
-            # write item to file
-            f.write(str(key) + ': ' + str(value) + '\n')
+    with open('output.json', 'w') as f:
+       json.dump(jsonDict, f)
     return
 
 def extract_next_links(url, resp):
