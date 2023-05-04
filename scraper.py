@@ -72,6 +72,14 @@ def RobotTXT_exist(url):
 def readRobot(url):
     return
 
+
+#returns true if the given url has a robot text file 
+def RobotTXT_exist(url):
+    return True
+
+def readRobot(url):
+    return
+
 def is_valid(url):
     # Decide whether to crawl this url or not. 
     # If you decide to crawl it, return True; otherwise return False.
