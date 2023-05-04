@@ -43,11 +43,11 @@ def extract_next_links(url, resp):
         return list()
     
     #too big
-    if len(resp.raw_response.content) > 850_000:
+    if len(resp.raw_response.content) > 1_200_000:
         return list()
     
-    #duplicate check
-
+    #duplicate check, dupe url set
+    dupCheck.add(url)
     #maybe more checks?
 
     webPage = BeautifulSoup(resp.raw_response.content, "html.parser")
@@ -65,14 +65,6 @@ def extract_next_links(url, resp):
     #maybe add deleting duplicates here?
     return newUrls
 
-
-
-#returns true if the given url has a robot text file 
-def RobotTXT_exist(url):
-    return True
-
-def readRobot(url):
-    return
 
 
 #returns true if the given url has a robot text file 
