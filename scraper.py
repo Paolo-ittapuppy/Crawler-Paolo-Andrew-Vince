@@ -59,6 +59,9 @@ def extract_next_links(url, resp):
     #maybe more checks?
 
     results = BeautifulSoup(resp.raw_response.content, "html.parser")
+    # just changed text to results and then did results.text 
+    # otherwise ur just calling the class object
+    # and not the text within it
     words = tokenizer.tokenize(results.text)
     freq = tokenizer.computeWordFrequencies(words)
 
