@@ -46,6 +46,7 @@ def extract_next_links(url, resp):
 
     #error in page
     if resp.status != 200:
+        # do we need to check if there's an error then by using resp.raw_response.url ?
         return list()
     
     #too big
@@ -54,6 +55,7 @@ def extract_next_links(url, resp):
     
     #duplicate check
     if url in dupCheck:
+        # would we use resp.url or regular url... not sure what the difference is
         return list()
     dupCheck.add(url)
     #maybe more checks?
