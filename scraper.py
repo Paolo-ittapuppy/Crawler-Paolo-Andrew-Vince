@@ -48,13 +48,20 @@ def extract_next_links(url, resp):
 
     #maybe more checks?
 
-    text = BeautifulSoup(resp.raw_response.content, "html.parser")
-    words = tokenizer.tokenize(text)
-    freq = tokenizer.computeWordFrequencies(words)
+    webPage = BeautifulSoup(resp.raw_response.content, "html.parser")
+    text = tokenizer.tokenize(webPage.text)
+    freq = tokenizer.computeWordFrequencies(text)
 
     #too much repitition
-    if len(freq.keys)/len(words) < .2:
+    if len(freq.keys)/len(text) < .2:
         return list()
+
+    #return a list of all urls 
+    newUrls = []
+    for url in webPage.findAll('a'):
+        newUrls.append(url.get('href'))
+    #maybe add deleting duplicates here?
+    return newUrls
 
 
 
