@@ -49,7 +49,7 @@ def extract_next_links(url, resp):
         return list()
     
     #too big
-    if len(resp.raw_response.content) > 850_000:
+    if len(resp.raw_response.content) > 1_200_000:
         return list()
     
     #duplicate check
@@ -58,16 +58,20 @@ def extract_next_links(url, resp):
     dupCheck.add(url)
     #maybe more checks?
 
-    results = BeautifulSoup(resp.raw_response.content, "html.parser")
-    # just changed text to results and then did results.text 
-    # otherwise ur just calling the class object
-    # and not the text within it
-    words = tokenizer.tokenize(results.text)
-    freq = tokenizer.computeWordFrequencies(words)
+    webPage = BeautifulSoup(resp.raw_response.content, "html.parser")
+    text = tokenizer.tokenize(webPage.text)
+    freq = tokenizer.computeWordFrequencies(text)
 
     #too much repitition
     if len(freq.keys)/len(words) < .2:
         return list()
+    
+    #return a list of all urls 
+    newUrls = []
+    for url in webPage.findAll('a'):
+        newUrls.append(url.get('href'))
+    #maybe add deleting duplicates here?
+    return newUrls
 
 #returns true if the given url has a robot text file 
 def RobotTXT_exist(url):
