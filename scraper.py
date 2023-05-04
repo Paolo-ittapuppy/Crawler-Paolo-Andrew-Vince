@@ -60,6 +60,7 @@ def extract_next_links(url, resp):
 
 #returns true if the given url has a robot text file 
 def RobotTXT_exist(url):
+    print("Robot")
     return True
 
 def readRobot(url):
