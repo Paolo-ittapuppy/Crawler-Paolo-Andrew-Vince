@@ -41,6 +41,7 @@ def extract_next_links(url, resp):
         return list()
     
     #too big
+<<<<<<< HEAD
     if len(resp.raw_response.content) > 1_200_000:
         return list()
     
@@ -63,6 +64,23 @@ def extract_next_links(url, resp):
     #maybe add deleting duplicates here?
     return newUrls
 
+=======
+    if len(resp.raw_response.content) > 850_000:
+        return list()
+    
+    #duplicate check
+
+    #maybe more checks?
+
+    text = BeautifulSoup(resp.raw_response.content, "html.parser")
+    words = tokenizer.tokenize(text)
+    freq = tokenizer.computeWordFrequencies(words)
+
+    #too much repitition
+    if len(freq.keys)/len(words) < .2:
+        return list()
+
+>>>>>>> zedhoebranch
 
 
 #returns true if the given url has a robot text file 
