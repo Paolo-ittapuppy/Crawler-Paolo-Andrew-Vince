@@ -1,12 +1,13 @@
 import re
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
+from collections import defaultdict
 import tokenizer
 import json
 
 uniquePages = set() # changed form list to a set
 longestPage = tuple("Nothing", 0) #two tuple, first is page and second is length
-wordCounts = dict()
+wordCounts = defaultdict(int)
 icsSubDomains = []
 dupCheck = set()
 
