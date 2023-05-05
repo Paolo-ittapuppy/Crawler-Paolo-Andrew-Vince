@@ -81,6 +81,9 @@ def extract_next_links(url, resp):
         longestPage[0] = url
         longestPage[1] = len(words)
 
+    #adding subdomains here
+    if re.match(r".*\.ics\.uci\.edu.*", url):
+        icsSubDomains[urlparse(str(url)).hostname] +=1
     
     #return a list of all urls 
     newUrls = []
