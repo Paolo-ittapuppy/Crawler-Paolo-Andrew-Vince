@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import tokenizer
 import json
 
-uniquePages = []
+uniquePages = set() # changed form list to a set
 longestPage = tuple() #two tuple, first is page and second is length
 wordCounts = dict()
 icsSubDomains = []
@@ -59,12 +59,14 @@ def extract_next_links(url, resp):
     #maybe more checks?
 
     webPage = BeautifulSoup(resp.raw_response.content, "html.parser")
-    text = tokenizer.tokenize(webPage.text)
-    freq = tokenizer.computeWordFrequencies(text)
+    words = tokenizer.tokenize(webPage.text)
+    freq = tokenizer.computeWordFrequencies(words)
 
     #too much repitition
     if len(freq.keys)/len(words) < .2:
         return list()
+    
+    ## WHERE TO START UPDATING VALUES OF LEN UNIQUE ETC.
     
     #return a list of all urls 
     newUrls = []
