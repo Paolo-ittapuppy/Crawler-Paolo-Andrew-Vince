@@ -10,12 +10,13 @@ longestPage = tuple("Nothing", 0) #two tuple, first is page and second is length
 wordCounts = defaultdict(int)
 icsSubDomains = []
 dupCheck = set()
-
 jsonDict = {}
-jsonDict["UPages"] = uniquePages
-jsonDict["LPage"] = longestPage
-jsonDict["wCount"] = wordCounts
-jsonDict["sDomains"] = icsSubDomains
+
+def createJson():
+    jsonDict["UPages"] = uniquePages
+    jsonDict["LPage"] = longestPage
+    jsonDict["wCount"] = wordCounts
+    jsonDict["sDomains"] = icsSubDomains
 
 def storeData():
     uniquePages = list(set(uniquePages))
@@ -83,7 +84,7 @@ def extract_next_links(url, resp):
 
     #adding subdomains here
     if re.match(r".*\.ics\.uci\.edu.*", url):
-        icsSubDomains[urlparse(str(url)).hostname] +=1
+        icsSubDomains.append(urlparse(str(url)).hostname)
     
     #return a list of all urls 
     newUrls = []
