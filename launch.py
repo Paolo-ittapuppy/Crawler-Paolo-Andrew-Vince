@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 from utils.server_registration import get_cache_server
 from utils.config import Config
 from crawler import Crawler
-from scraper import readData
+from scraper import readData, clearJSON
 
 
 def main(config_file, restart):
@@ -17,6 +17,8 @@ def main(config_file, restart):
 
 
 if __name__ == "__main__":
+    clearJSON()
+
     parser = ArgumentParser()
     parser.add_argument("--restart", action="store_true", default=False)
     parser.add_argument("--config_file", type=str, default="config.ini")

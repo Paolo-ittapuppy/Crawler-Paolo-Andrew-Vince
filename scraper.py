@@ -17,6 +17,9 @@ def createJson():
     jsonDict["LPage"] = longestPage
     jsonDict["wCount"] = wordCounts
     jsonDict["sDomains"] = icsSubDomains
+
+def clearJSON():
+    open("logs.json",'w').close()
     
 def storeData():
     uniquePages = list(set(uniquePages))
@@ -29,24 +32,24 @@ def readData():
         data = json.load(d)
     with open('output.txt', 'w') as f:
         f.write("===== The Results of the Crawler ! =====\n\n")
-        f.write(f"Number of Unique Pages: {len(data['uniquePages'])}\n")
-        f.write(f"Longest Page in Terms of Words: {data['longestPage'][0]}\n")
-        f.write(f"  # of words: {data['longestPage'][1]}\n\n")
+        f.write(f"Number of Unique Pages: {len(data['UPages'])}\n")
+        f.write(f"Longest Page in Terms of Words: {data['LPage'][0]}\n")
+        f.write(f"  # of words: {data['LPage'][1]}\n\n")
 
         # sorting portion
         #sorts words by frequency
-        sorted_words = sorted(data['wordCounts'], key = lambda x: data['wordCounts'][x], reverse = True)
+        sorted_words = sorted(data['wCount'], key = lambda x: data['wCount'][x], reverse = True)
         
         #sorts the ics subdomains by name
-        sorted_domains = sorted(data['icsSubDomains'], key = lambda x: (x,data['icsSubDomains'][x]))
+        sorted_domains = sorted(data['sDomains'], key = lambda x: (x,data['sDomains'][x]))
         f.write("Top 50 words:")
         # still have to do a check to make sure everything is sorted
         for word in sorted_words[:50]:
-            f.write(f"{word}, -> , {wordCounts[word]}\n")
+            f.write(f"{word}, -> , {data['wCount'][word]}\n")
         f.write("\n")
-        f.write(f"ics.uci.edu subdomains:\nCount: {len(data['icsSubDomains'])}\n")
+        f.write(f"ics.uci.edu subdomains:\nCount: {len(data['sDomains'])}\n")
         for url in sorted_domains:
-            f.write(f"{url}, {data['icsSubDomains'][url]}\n")
+            f.write(f"{url}, {data['sDomains'][url]}\n")
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
