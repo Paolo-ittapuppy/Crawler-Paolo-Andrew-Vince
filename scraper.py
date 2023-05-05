@@ -22,6 +22,11 @@ def storeData():
     json.dump(jsonDict, data)
     data.close
 
+def readData():
+    #zed hoe
+    #create a nice text file to present our data, refer to 
+    pass
+
 def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
