@@ -25,6 +25,7 @@ def storeData():
     data.close
 
 def readData():
+    open("output.txt",'w').close()
     with open('output.txt', 'w') as f:
         f.write("===== The Results of the Crawler ! =====\n\n")
         f.write(f"Number of Unique Pages: {len(uniquePages)}\n")
@@ -88,7 +89,8 @@ def extract_next_links(url, resp):
     ## WHERE TO START UPDATING VALUES OF LEN UNIQUE ETC.
     
     # do we need to defrag? ADDING UNIQUE PAGES (Question 1)
-    uniquePages.add(url)
+    new_url = urlparse(url)._replace(fragment="").geturl()
+    uniquePages.add(new_url)
 
     # counting up words (Question 2)
     for token in words:
