@@ -8,7 +8,7 @@ import json
 uniquePages = set() # changed form list to a set
 longestPage = tuple("Nothing", 0) #two tuple, first is page and second is length
 wordCounts = defaultdict(int)
-icsSubDomains = []
+icsSubDomains = defaultdict(int)
 dupCheck = set()
 jsonDict = {}
 
@@ -31,13 +31,19 @@ def readData():
         f.write(f"Longest Page in Terms of Words: {longestPage[0]}\n")
         f.write(f"  # of words: {longestPage[1]}\n\n")
 
+        # sorting portion
+        #sorts words by frequency
+        sorted_words = sorted(wordCounts, key = lambda x: wordCounts[x], reverse = True)
+        
+        #sorts the ics subdomains by name
+        sorted_domains = sorted(icsSubDomains, key = lambda x: (x,icsSubDomains[x]))
         f.write("Top 50 words:")
         # still have to do a check to make sure everything is sorted
-        for word in wordCounts[:50]:
+        for word in sorted_words[:50]:
             f.write(f"{word}, -> , {wordCounts[word]}\n")
         f.write("\n")
         f.write(f"ics.uci.edu subdomains:\nCount: {len(icsSubDomains)}\n")
-        for url in icsSubDomains:
+        for url in sorted_domains:
             f.write(f"{url}, {icsSubDomains[url]}")
 
 def scraper(url, resp):
@@ -95,7 +101,7 @@ def extract_next_links(url, resp):
 
     #adding subdomains here
     if re.match(r".*\.ics\.uci\.edu.*", url):
-        icsSubDomains.append(urlparse(str(url)).hostname)
+        icsSubDomains[urlparse(str(url)).hostname] +=1
     
     #return a list of all urls 
     newUrls = []
