@@ -69,14 +69,14 @@ def extract_next_links(url, resp):
     
     ## WHERE TO START UPDATING VALUES OF LEN UNIQUE ETC.
     
-    # do we need to defrag? ADDING UNIQUE PAGES
+    # do we need to defrag? ADDING UNIQUE PAGES (Question 1)
     uniquePages.add(url)
 
-    # counting up words
+    # counting up words (Question 2)
     for token in words:
         wordCounts[token] +=1
     
-    #creating tuple for words and url
+    #creating tuple for words and url (Question 3)
     if len(words) > longestPage[1]:
         longestPage[0] = url
         longestPage[1] = len(words)
