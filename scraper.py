@@ -5,7 +5,7 @@ import tokenizer
 import json
 
 uniquePages = set() # changed form list to a set
-longestPage = tuple() #two tuple, first is page and second is length
+longestPage = tuple("Nothing", 0) #two tuple, first is page and second is length
 wordCounts = dict()
 icsSubDomains = []
 dupCheck = set()
@@ -67,6 +67,19 @@ def extract_next_links(url, resp):
         return list()
     
     ## WHERE TO START UPDATING VALUES OF LEN UNIQUE ETC.
+    
+    # do we need to defrag? ADDING UNIQUE PAGES
+    uniquePages.add(url)
+
+    # counting up words
+    for token in words:
+        wordCounts[token] +=1
+    
+    #creating tuple for words and url
+    if len(words) > longestPage[1]:
+        longestPage[0] = url
+        longestPage[1] = len(words)
+
     
     #return a list of all urls 
     newUrls = []
