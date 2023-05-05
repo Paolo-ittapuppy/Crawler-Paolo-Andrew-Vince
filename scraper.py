@@ -103,8 +103,7 @@ def extract_next_links(url, resp):
     
     #creating tuple for words and url (Question 3)
     if len(words) > longestPage[1]:
-        longestPage[0] = str(url)
-        longestPage[1] = len(words)
+        longestPage = tuple(str(url), len(words))
 
     #adding subdomains here
     if re.match(r".*\.ics\.uci\.edu.*", url):
