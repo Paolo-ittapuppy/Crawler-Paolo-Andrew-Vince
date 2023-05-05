@@ -25,27 +25,28 @@ def storeData():
     data.close
 
 def readData():
-    open("output.txt",'w').close()
+    with open("data.json", "r") as d:
+        data = json.load(d)
     with open('output.txt', 'w') as f:
         f.write("===== The Results of the Crawler ! =====\n\n")
-        f.write(f"Number of Unique Pages: {len(uniquePages)}\n")
-        f.write(f"Longest Page in Terms of Words: {longestPage[0]}\n")
-        f.write(f"  # of words: {longestPage[1]}\n\n")
+        f.write(f"Number of Unique Pages: {len(data['uniquePages'])}\n")
+        f.write(f"Longest Page in Terms of Words: {data['longestPage'][0]}\n")
+        f.write(f"  # of words: {data['longestPage'][1]}\n\n")
 
         # sorting portion
         #sorts words by frequency
-        sorted_words = sorted(wordCounts, key = lambda x: wordCounts[x], reverse = True)
+        sorted_words = sorted(data['wordCounts'], key = lambda x: data['wordCounts'][x], reverse = True)
         
         #sorts the ics subdomains by name
-        sorted_domains = sorted(icsSubDomains, key = lambda x: (x,icsSubDomains[x]))
+        sorted_domains = sorted(data['icsSubDomains'], key = lambda x: (x,data['icsSubDomains'][x]))
         f.write("Top 50 words:")
         # still have to do a check to make sure everything is sorted
         for word in sorted_words[:50]:
             f.write(f"{word}, -> , {wordCounts[word]}\n")
         f.write("\n")
-        f.write(f"ics.uci.edu subdomains:\nCount: {len(icsSubDomains)}\n")
+        f.write(f"ics.uci.edu subdomains:\nCount: {len(data['icsSubDomains'])}\n")
         for url in sorted_domains:
-            f.write(f"{url}, {icsSubDomains[url]}")
+            f.write(f"{url}, {data['icsSubDomains'][url]}\n")
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
