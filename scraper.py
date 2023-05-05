@@ -17,7 +17,7 @@ def createJson():
     jsonDict["LPage"] = longestPage
     jsonDict["wCount"] = wordCounts
     jsonDict["sDomains"] = icsSubDomains
-
+    
 def storeData():
     uniquePages = list(set(uniquePages))
     data = open('data.json', 'w')
