@@ -17,7 +17,7 @@ def createJson():
     jsonDict["LPage"] = longestPage
     jsonDict["wCount"] = wordCounts
     jsonDict["sDomains"] = icsSubDomains
-
+    
 def storeData():
     uniquePages = list(set(uniquePages))
     data = open('data.json', 'w')
@@ -25,9 +25,20 @@ def storeData():
     data.close
 
 def readData():
-    #zed hoe
-    #create a nice text file to present our data, refer to 
-    pass
+    with open('output.txt', 'w') as f:
+        f.write("===== The Results of the Crawler ! =====\n\n")
+        f.write(f"Number of Unique Pages: {len(uniquePages)}\n")
+        f.write(f"Longest Page in Terms of Words: {longestPage[0]}\n")
+        f.write(f"  # of words: {longestPage[1]}\n\n")
+
+        f.write("Top 50 words:")
+        # still have to do a check to make sure everything is sorted
+        for word in wordCounts[:50]:
+            f.write(f"{word}, -> , {wordCounts[word]}\n")
+        f.write("\n")
+        f.write(f"ics.uci.edu subdomains:\nCount: {len(icsSubDomains)}\n")
+        for url in icsSubDomains:
+            f.write(f"{url}, {icsSubDomains[url]}")
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
@@ -79,7 +90,7 @@ def extract_next_links(url, resp):
     
     #creating tuple for words and url (Question 3)
     if len(words) > longestPage[1]:
-        longestPage[0] = url
+        longestPage[0] = str(url)
         longestPage[1] = len(words)
 
     #adding subdomains here
