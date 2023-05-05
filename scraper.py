@@ -6,7 +6,7 @@ import tokenizer
 import json
 
 uniquePages = set() # changed form list to a set
-longestPage = tuple("Nothing", 0) #two tuple, first is page and second is length
+longestPage = ("Nothing", 0) #two tuple, first is page and second is length
 wordCounts = defaultdict(int)
 icsSubDomains = defaultdict(int)
 dupCheck = set()
@@ -103,7 +103,7 @@ def extract_next_links(url, resp):
     
     #creating tuple for words and url (Question 3)
     if len(words) > longestPage[1]:
-        longestPage = tuple(str(url), len(words))
+        longestPage = (str(url), len(words))
 
     #adding subdomains here
     if re.match(r".*\.ics\.uci\.edu.*", url):
