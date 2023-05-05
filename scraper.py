@@ -19,7 +19,7 @@ def createJson():
     jsonDict["sDomains"] = icsSubDomains
 
 def clearJSON():
-    open("logs.json",'w').close()
+    open("data.json",'w').close()
     
 def storeData():
     uniquePages = list(set(uniquePages))
@@ -42,10 +42,11 @@ def readData():
         
         #sorts the ics subdomains by name
         sorted_domains = sorted(data['sDomains'], key = lambda x: (x,data['sDomains'][x]))
-        f.write("Top 50 words:")
+
+        f.write("Top 50 words:\n")
         # still have to do a check to make sure everything is sorted
         for word in sorted_words[:50]:
-            f.write(f"{word}, -> , {data['wCount'][word]}\n")
+            f.write(f"{word}, = , {data['wCount'][word]}\n")
         f.write("\n")
         f.write(f"ics.uci.edu subdomains:\nCount: {len(data['sDomains'])}\n")
         for url in sorted_domains:
