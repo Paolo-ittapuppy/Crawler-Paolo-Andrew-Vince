@@ -26,11 +26,6 @@ def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
-def readToFile():
-    with open('output.json', 'w') as f:
-       json.dump(jsonDict, f)
-    return
-
 def extract_next_links(url, resp):
     # Implementation required.
     # url: the URL that was used to get the page
@@ -44,7 +39,7 @@ def extract_next_links(url, resp):
 
     #error in page
     if resp.status != 200:
-        # do we need to check if there's an error then by using resp.raw_response.url ?
+        # do we need to check if there's an error then by using resp.error.url ?
         return list()
     
     #too big
@@ -52,8 +47,8 @@ def extract_next_links(url, resp):
         return list()
     
     #duplicate check
-    if url in dupCheck:
-        # would we use resp.url or regular url... not sure what the difference is
+    if resp.url in dupCheck:
+        # would we use resp.url or regular url... not sure what the difference is ( SOLVED )
         return list()
     dupCheck.add(url)
     #maybe more checks?
