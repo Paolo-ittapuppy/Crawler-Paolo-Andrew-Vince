@@ -5,6 +5,7 @@ from threading import Thread, RLock
 from queue import Queue, Empty
 
 from utils import get_logger, get_urlhash, normalize
+import scraper
 from scraper import is_valid
 
 class Frontier(object):

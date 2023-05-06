@@ -3,6 +3,7 @@ import re
 import sys
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+stop_words = set(stopwords.words('english'))
 #code gotten from "https://www.geeksforgeeks.org/removing-stop-words-nltk-python/"
 
 
@@ -10,7 +11,7 @@ def tokenize(Text):
     #check if file exists
     tokenList = []
     for t in word_tokenize(Text):
-        if t.lower() not in stopwords:
+        if t.lower() not in stop_words:
             tokenList.append(t)
     return tokenList
     

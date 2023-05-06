@@ -5,15 +5,33 @@ from collections import defaultdict
 import tokenizer
 import json
 
+global uniquePages
 uniquePages = set() # changed form list to a set
+global longestPage
 longestPage = ("Nothing", 0) #two tuple, first is page and second is length
+global wordCounts
 wordCounts = defaultdict(int)
+global icsSubDomains
 icsSubDomains = defaultdict(int)
+global dupCheck
 dupCheck = set()
+global jsonDict
 jsonDict = {}
 
+
 def createJson():
-    jsonDict["UPages"] = uniquePages
+    global uniquePages
+
+    global longestPage
+
+    global wordCounts
+
+    global icsSubDomains
+
+    global dupCheck
+
+    global jsonDict
+    jsonDict["UPages"] = list(uniquePages)
     jsonDict["LPage"] = longestPage
     jsonDict["wCount"] = wordCounts
     jsonDict["sDomains"] = icsSubDomains
@@ -22,6 +40,17 @@ def clearJSON():
     open("data.json",'w').close()
     
 def storeData():
+    global uniquePages
+
+    global longestPage
+
+    global wordCounts
+
+    global icsSubDomains
+
+    global dupCheck
+
+    global jsonDict
     uniquePages = list(set(uniquePages))
     data = open('data.json', 'w')
     json.dump(jsonDict, data)
@@ -57,6 +86,17 @@ def scraper(url, resp):
     return [link for link in links if is_valid(link)]
 
 def extract_next_links(url, resp):
+    global uniquePages
+
+    global longestPage
+
+    global wordCounts
+
+    global icsSubDomains
+
+    global dupCheck
+
+    global jsonDict
     # Implementation required.
     # url: the URL that was used to get the page
     # resp.url: the actual url of the page
@@ -88,7 +128,7 @@ def extract_next_links(url, resp):
     freq = tokenizer.computeWordFrequencies(words)
 
     #too much repitition
-    if len(freq.keys)/len(words) < .2:
+    if (len(freq.keys())+1)/(len(words)+1) <= float(.2):
         return list()
     
     ## WHERE TO START UPDATING VALUES OF LEN UNIQUE ETC.

@@ -3,6 +3,7 @@ from argparse import ArgumentParser
 
 from utils.server_registration import get_cache_server
 from utils.config import Config
+import crawler
 from crawler import Crawler
 from scraper import readData, clearJSON
 

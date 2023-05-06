@@ -1,0 +1,148 @@
+===== The Results of the Crawler ! =====
+
+Number of Unique Pages: 9672
+Longest Page in Terms of Words: http://www.ics.uci.edu/~shantas/publications/15-Interval_join_on_MapReduce.ppsx
+  # of words: 162851
+
+Top 50 words:
+,, = , 287213
+., = , 193889
+:, = , 90475
+(, = , 76890
+), = , 75513
+$, = , 43210
+&, = , 41076
+|, = , 39582
+�, = , 34571
+}, = , 32789
+{, = , 32500
+;, = , 31895
+[, = , 30697
+?, = , 30510
+Research, = , 29903
+], = , 29635
+*, = , 28900
+'', = , 28891
+@, = , 27851
+#, = , 26975
+’, = , 26283
+!, = , 26214
+>, = , 24808
+2022, = , 23098
+%, = , 21297
+<, = , 20673
+“, = , 19707
+Ramesh, = , 19325
+”, = , 19025
+=, = , 18026
+Computer, = , 17088
+2018, = , 16994
+', = , 16749
+`, = , 16511
+Information, = , 16133
+2019, = , 14851
+��, = , 14683
+Student, = , 14160
+2020, = , 14097
+2021, = , 13846
+News, = , 13425
+September, = , 13373
+UCI, = , 13357
+2017, = , 12921
+Software, = , 12920
+Events, = , 12669
+2016, = , 12632
+2015, = , 12497
+October, = , 12348
+Graduate, = , 12194
+
+ics.uci.edu subdomains:
+Count: 88
+accessibility.ics.uci.edu, 1
+acoi.ics.uci.edu, 74
+aiclub.ics.uci.edu, 1
+archive.ics.uci.edu, 6
+asterix.ics.uci.edu, 6
+cbcl.ics.uci.edu, 3
+cert.ics.uci.edu, 2
+chenli.ics.uci.edu, 3
+cml.ics.uci.edu, 185
+code.ics.uci.edu, 13
+computableplant.ics.uci.edu, 30
+cradl.ics.uci.edu, 20
+create.ics.uci.edu, 7
+cwicsocal18.ics.uci.edu, 12
+cyberclub.ics.uci.edu, 2
+dejavu.ics.uci.edu, 1
+dgillen.ics.uci.edu, 25
+duttgroup.ics.uci.edu, 101
+dynamo.ics.uci.edu, 1
+edgelab.ics.uci.edu, 10
+elms.ics.uci.edu, 1
+emj.ics.uci.edu, 45
+esl.ics.uci.edu, 2
+evoke.ics.uci.edu, 8
+flamingo.ics.uci.edu, 10
+fr.ics.uci.edu, 3
+frost.ics.uci.edu, 1
+futurehealth.ics.uci.edu, 4
+grape.ics.uci.edu, 79
+graphics.ics.uci.edu, 3
+graphmod.ics.uci.edu, 1
+hack.ics.uci.edu, 2
+hai.ics.uci.edu, 3
+hobbes.ics.uci.edu, 1
+hpi.ics.uci.edu, 3
+i-sensorium.ics.uci.edu, 1
+iasl.ics.uci.edu, 20
+informatics.ics.uci.edu, 1
+intranet.ics.uci.edu, 1
+ipf.ics.uci.edu, 2
+ipubmed.ics.uci.edu, 1
+isg.ics.uci.edu, 183
+jgarcia.ics.uci.edu, 24
+keys.ics.uci.edu, 1
+luci.ics.uci.edu, 4
+malek.ics.uci.edu, 1
+mcs.ics.uci.edu, 82
+mdogucu.ics.uci.edu, 1
+mds.ics.uci.edu, 19
+mhcid.ics.uci.edu, 18
+mondego.ics.uci.edu, 3
+mse.ics.uci.edu, 2
+mswe.ics.uci.edu, 13
+nalini.ics.uci.edu, 7
+ngs.ics.uci.edu, 3032
+perennialpolycultures.ics.uci.edu, 1
+plrg.ics.uci.edu, 84
+psearch.ics.uci.edu, 1
+redmiles.ics.uci.edu, 3
+riscit.ics.uci.edu, 1
+sdcl.ics.uci.edu, 209
+seal.ics.uci.edu, 6
+sherlock.ics.uci.edu, 1
+sli.ics.uci.edu, 643
+sourcerer.ics.uci.edu, 1
+stairs.ics.uci.edu, 1
+statconsulting.ics.uci.edu, 5
+student-council.ics.uci.edu, 1
+studentcouncil.ics.uci.edu, 3
+support.ics.uci.edu, 1
+swiki.ics.uci.edu, 1
+tad.ics.uci.edu, 1
+tastier.ics.uci.edu, 1
+tippersweb.ics.uci.edu, 4
+transformativeplay.ics.uci.edu, 59
+tutors.ics.uci.edu, 1
+ugradforms.ics.uci.edu, 1
+unite.ics.uci.edu, 10
+vision.ics.uci.edu, 7
+wearablegames.ics.uci.edu, 11
+wics.ics.uci.edu, 1497
+wiki.ics.uci.edu, 1
+www-db.ics.uci.edu, 16
+www.cert.ics.uci.edu, 1
+www.graphics.ics.uci.edu, 1
+www.ics.uci.edu, 1208
+www.informatics.ics.uci.edu, 1
+xtune.ics.uci.edu, 6
