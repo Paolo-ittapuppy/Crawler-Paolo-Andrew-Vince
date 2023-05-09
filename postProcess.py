@@ -55,7 +55,7 @@ def final_sort():
     file.close()
 
 
-    with open('output3.txt', 'w') as f:
+    with open('Final_Output.txt', 'w') as f:
         f.write("===== The Results of the Crawler ! =====\n\n")
         f.write(f"Number of Unique Pages: {len(oJson['UPages'])}\n")
         f.write(f"Longest Page in Terms of Words: {oJson['LPage'][0]}\n")
