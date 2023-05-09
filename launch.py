@@ -5,7 +5,8 @@ from utils.server_registration import get_cache_server
 from utils.config import Config
 import crawler
 from crawler import Crawler
-from scraper import readData, clearJSON
+from scraper import readData, clearJSON 
+from postProcess import final_sort
 
 
 def main(config_file, restart):
@@ -27,4 +28,5 @@ if __name__ == "__main__":
     main(args.config_file, args.restart)
     
     readData()
+    final_sort()
 
